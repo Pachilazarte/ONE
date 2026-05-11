@@ -5,24 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - ONE Plataforma</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
+        .container { max-width: 900px; margin: 0 auto; }
         .back-link {
             color: white;
             text-decoration: none;
@@ -33,27 +23,18 @@
             font-size: 1.1em;
             transition: opacity 0.3s;
         }
-
-        .back-link:hover {
-            opacity: 0.8;
-        }
-
+        .back-link:hover { opacity: 0.8; }
         header {
             text-align: center;
             color: white;
             margin-bottom: 40px;
         }
-
         header h1 {
             font-size: 2.2em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
-        header p {
-            opacity: 0.9;
-        }
-
+        header p { opacity: 0.9; }
         .panel {
             background: white;
             border-radius: 15px;
@@ -61,7 +42,6 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             margin-bottom: 30px;
         }
-
         .panel h2 {
             color: #667eea;
             margin-bottom: 25px;
@@ -69,7 +49,6 @@
             border-bottom: 3px solid #667eea;
             padding-bottom: 15px;
         }
-
         .info-box {
             background: #f0f4ff;
             border-left: 4px solid #667eea;
@@ -78,17 +57,12 @@
             margin-bottom: 20px;
             color: #333;
         }
-
-        .info-box strong {
-            color: #667eea;
-        }
-
+        .info-box strong { color: #667eea; }
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
-
         button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -103,77 +77,68 @@
             align-items: center;
             gap: 8px;
         }
-
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
-
+        button:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
         .button-secondary {
             background: #f0f0f0;
             color: #667eea;
             margin-left: 10px;
         }
-
         .button-secondary:hover {
             background: #e0e0e0;
             box-shadow: none;
         }
-
+        .btn-big {
+            background: linear-gradient(135deg, #28a745, #20a93a);
+            font-size: 1.1em;
+            padding: 15px 40px;
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-big:hover {
+            box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
+        }
         .status-box {
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
         }
-
         .status-box.success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
-
         .status-box.error {
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
-
         .status-box.info {
             background: #d1ecf1;
             color: #0c5460;
             border: 1px solid #bee5eb;
         }
-
-        .files-list {
-            margin-top: 20px;
-        }
-
+        .files-list { margin-top: 20px; }
         .file-item {
             background: #f8f9fa;
-            padding: 12px;
+            padding: 12px 15px;
             border-radius: 5px;
             margin-bottom: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .file-item strong {
-            color: #667eea;
-        }
-
-        .file-item .date {
-            font-size: 0.85em;
-            color: #999;
-        }
-
+        .file-item strong { color: #667eea; }
+        .file-item .date { font-size: 0.85em; color: #999; }
         .tabs {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
             border-bottom: 2px solid #ddd;
         }
-
         .tab-button {
             background: none;
             border: none;
@@ -184,52 +149,63 @@
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
         }
-
         .tab-button.active {
             color: #667eea;
             border-bottom-color: #667eea;
         }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
         h3 {
             color: #667eea;
             margin-bottom: 15px;
             font-size: 1.2em;
         }
-
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            min-width: 250px;
+            border-left: 4px solid #667eea;
+        }
+        .toast.show { display: block; animation: slideIn 0.3s ease; }
+        .toast.success { border-left-color: #28a745; }
+        .toast.error { border-left-color: #dc3545; }
+        .toast.info { border-left-color: #17a2b8; }
+        @keyframes slideIn {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .spinner {
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         @media (max-width: 768px) {
-            .panel {
-                padding: 20px;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            button {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .button-secondary {
-                margin-left: 0;
-                margin-top: 10px;
-            }
+            .panel { padding: 20px; }
+            .grid { grid-template-columns: 1fr; }
+            button { width: 100%; justify-content: center; }
+            .button-secondary { margin-left: 0; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
+    <div id="toast" class="toast"></div>
+
     <div class="container">
         <a href="/" class="back-link">← Volver a Inicio</a>
 
@@ -238,27 +214,35 @@
             <p>Gestiona la sincronización y carga de recursos</p>
         </header>
 
+        <!-- PANEL PRINCIPAL DE SINCRONIZACIÓN -->
+        <div class="panel">
+            <h2>🚀 Acciones Rápidas</h2>
+            
+            <button class="btn-big" onclick="sincronizarAhora()" id="btn-sync-big">
+                🔄 Sincronizar Drive → GitHub → Netlify
+            </button>
+
+            <div id="sync-result" style="margin-top: 15px;"></div>
+        </div>
+
+        <!-- PANEL DE TABS -->
         <div class="panel">
             <div class="tabs">
-                <button class="tab-button active" onclick="switchTab('sync')">🔄 Sincronización</button>
+                <button class="tab-button active" onclick="switchTab('status')">📊 Estado</button>
                 <button class="tab-button" onclick="switchTab('files')">📁 Archivos</button>
-                <button class="tab-button" onclick="switchTab('info')">📊 Información</button>
+                <button class="tab-button" onclick="switchTab('info')">ℹ️ Información</button>
             </div>
 
-            <!-- TAB: SINCRONIZACIÓN -->
-            <div id="sync" class="tab-content active">
-                <h2>🔄 Sincronización Drive → GitHub → Netlify</h2>
+            <!-- TAB: ESTADO -->
+            <div id="status" class="tab-content active">
+                <h2>📊 Estado del Sistema</h2>
                 
                 <div class="info-box">
-                    <strong>ℹ️ Nota:</strong> La sincronización se realiza desde Google Sheets. 
-                    Este panel muestra el estado actual de los archivos sincronizados.
+                    <strong>ℹ️ Nota:</strong> El sistema sincroniza automáticamente cada 5 minutos (si está activado).
                 </div>
 
-                <div style="margin-top: 20px;">
-                    <h3>Estado Actual</h3>
-                    <div id="sync-status" style="padding: 15px; background: #f8f9fa; border-radius: 5px; color: #666;">
-                        Cargando estado...
-                    </div>
+                <div id="sync-status" style="padding: 15px; background: #f8f9fa; border-radius: 5px; color: #666;">
+                    Cargando estado...
                 </div>
 
                 <button onclick="checkSyncStatus()" style="margin-top: 20px;">
@@ -271,40 +255,39 @@
                 <h2>📁 Archivos Disponibles</h2>
                 
                 <div class="info-box">
-                    <strong>ℹ️ Información:</strong> Los archivos listados aquí están sincronizados 
-                    desde Google Drive. Para agregar nuevos, sube a Drive y ejecuta sincronización.
+                    <strong>ℹ️ Información:</strong> Estos son los archivos sincronizados desde Google Drive.
                 </div>
 
                 <div id="files-container" style="margin-top: 20px;">
                     <p style="color: #999;">Cargando archivos...</p>
                 </div>
+
+                <button onclick="loadFiles()" style="margin-top: 20px;">
+                    🔄 Recargar Lista
+                </button>
             </div>
 
             <!-- TAB: INFORMACIÓN -->
             <div id="info" class="tab-content">
-                <h2>📊 Información del Sistema</h2>
+                <h2>ℹ️ Configuración del Sistema</h2>
                 
-                <div style="margin-top: 20px;">
-                    <h3>⚙️ Configuración Actual</h3>
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9em; color: #666; font-family: monospace;">
-                        <p><strong>Dominio:</strong> https://one.escencialconsultora.com</p>
-                        <p><strong>Usuario GitHub:</strong> Pachilazarte</p>
-                        <p><strong>Repositorio:</strong> ONE</p>
-                        <p><strong>Rama:</strong> main</p>
-                        <p><strong>Hosting:</strong> Netlify</p>
-                        <p style="margin-top: 15px;"><strong>Status:</strong> ✅ Sistema conectado</p>
-                    </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.9em; color: #666;">
+                    <p><strong style="color: #667eea;">🌐 Dominio:</strong> https://one.escencialconsultora.com</p>
+                    <p><strong style="color: #667eea;">🐙 GitHub:</strong> Pachilazarte/ONE</p>
+                    <p><strong style="color: #667eea;">🌿 Rama:</strong> main</p>
+                    <p><strong style="color: #667eea;">🚀 Hosting:</strong> Netlify</p>
+                    <p><strong style="color: #667eea;">📁 Drive:</strong> Carpeta ONE</p>
+                    <p style="margin-top: 15px;"><strong>Status:</strong> ✅ Sistema conectado</p>
                 </div>
 
                 <div style="margin-top: 30px;">
-                    <h3>📝 Instrucciones de Sincronización</h3>
+                    <h3>📝 Flujo de Trabajo</h3>
                     <div class="info-box">
-                        <p><strong>Paso 1:</strong> Sube archivos HTML a tu carpeta Drive</p>
-                        <p style="margin-top: 10px;"><strong>Paso 2:</strong> Ve a Google Sheets → Menú "Sincronización"</p>
-                        <p style="margin-top: 10px;"><strong>Paso 3:</strong> Haz clic en "Sincronizar Drive → GitHub"</p>
-                        <p style="margin-top: 10px;"><strong>Paso 4:</strong> Espera a que se complete</p>
-                        <p style="margin-top: 10px;"><strong>Paso 5:</strong> Netlify despliega automáticamente</p>
-                        <p style="margin-top: 10px;"><strong>Paso 6:</strong> ¡Tus archivos están disponibles!</p>
+                        <p><strong>1.</strong> Subes un archivo .html a la carpeta de Google Drive</p>
+                        <p style="margin-top: 10px;"><strong>2.</strong> Esperas 5 min (auto-sync) o haces clic en "Sincronizar Ahora"</p>
+                        <p style="margin-top: 10px;"><strong>3.</strong> El sistema sube el archivo a GitHub</p>
+                        <p style="margin-top: 10px;"><strong>4.</strong> Netlify deploya automáticamente</p>
+                        <p style="margin-top: 10px;"><strong>5.</strong> Tu archivo está disponible en el dominio</p>
                     </div>
                 </div>
             </div>
@@ -318,9 +301,9 @@
                 <div>
                     <h3>📊 Google Sheets</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Accede a la hoja de cálculo para sincronizar.
+                        Hoja de cálculo de control.
                     </p>
-                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1S55Lml-GHGmNyzrWfG314bxll-eSqulldioAjsAMQ/edit', '_blank')">
+                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1S55Lml-GhtGmNyzrWfG314bxll-eSqulldioAj8AM0/edit', '_blank')">
                         Abrir Sheets
                     </button>
                 </div>
@@ -328,7 +311,7 @@
                 <div>
                     <h3>🐙 GitHub</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Accede al repositorio para ver los cambios.
+                        Repositorio del proyecto.
                     </p>
                     <button onclick="window.open('https://github.com/Pachilazarte/ONE', '_blank')">
                         Ver Repositorio
@@ -348,7 +331,7 @@
                 <div>
                     <h3>🚀 Netlify</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Monitorea los despliegues del sitio.
+                        Estado del hosting.
                     </p>
                     <button onclick="window.open('https://app.netlify.com', '_blank')">
                         Ir a Netlify
@@ -359,6 +342,9 @@
     </div>
 
     <script>
+        // ⚠️ URL del Web App de Apps Script
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6HKcHaywg5K2UtSXcAPfh5HQgCrWqREiEJTebWQwD1QgNgXA52R25ZOOdCktrJ4TY5w/exec';
+
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
@@ -372,17 +358,71 @@
 
             if (tabName === 'files') {
                 loadFiles();
+            } else if (tabName === 'status') {
+                checkSyncStatus();
+            }
+        }
+
+        async function sincronizarAhora() {
+            const btn = document.getElementById('btn-sync-big');
+            const resultDiv = document.getElementById('sync-result');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Sincronizando...';
+            resultDiv.innerHTML = '';
+
+            showToast('⏳ Iniciando sincronización...', 'info');
+
+            try {
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=sync`);
+                const data = await response.json();
+
+                if (data.exito) {
+                    resultDiv.innerHTML = `
+                        <div class="status-box success">
+                            ✅ <strong>Sincronización completada!</strong>
+                            <br>${data.sincronizados}/${data.total} archivos sincronizados
+                            ${data.errores && data.errores.length > 0 ? '<br>⚠️ Errores: ' + data.errores.length : ''}
+                        </div>
+                    `;
+                    showToast(`✅ ${data.sincronizados}/${data.total} archivos sincronizados`, 'success');
+                    
+                    setTimeout(() => {
+                        loadFiles();
+                        checkSyncStatus();
+                    }, 3000);
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="status-box error">
+                            ❌ Error: ${data.mensaje}
+                        </div>
+                    `;
+                    showToast(`❌ Error: ${data.mensaje}`, 'error');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = `
+                    <div class="status-box error">
+                        ❌ Error: ${error.message}
+                    </div>
+                `;
+                showToast(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
             }
         }
 
         async function loadFiles() {
             try {
-                const response = await fetch('/index.json');
+                const response = await fetch('/index.json?t=' + Date.now());
                 const data = await response.json();
                 const container = document.getElementById('files-container');
 
                 if (data.files.length === 0) {
-                    container.innerHTML = '<p style="color: #999;">No hay archivos disponibles aún. Sube algunos a Drive y sincroniza.</p>';
+                    container.innerHTML = '<p style="color: #999;">📭 No hay archivos disponibles. Sube archivos HTML a Drive y sincroniza.</p>';
                     return;
                 }
 
@@ -395,7 +435,7 @@
                         <div class="file-item">
                             <div>
                                 <strong>${cleanName}</strong>
-                                <div class="date">${date}</div>
+                                <div class="date">📅 ${date} | 📄 ${file.name}</div>
                             </div>
                             <button onclick="window.open('/${cleanName}', '_blank')" style="margin: 0;">
                                 Ver →
@@ -407,13 +447,13 @@
                 container.innerHTML = html;
             } catch (error) {
                 document.getElementById('files-container').innerHTML = 
-                    `<p style="color: red;">Error al cargar archivos: ${error.message}</p>`;
+                    `<p style="color: red;">❌ Error: ${error.message}</p>`;
             }
         }
 
         async function checkSyncStatus() {
             try {
-                const response = await fetch('/index.json');
+                const response = await fetch('/index.json?t=' + Date.now());
                 const data = await response.json();
                 
                 const statusDiv = document.getElementById('sync-status');
@@ -425,31 +465,41 @@
                 
                 if (diffMinutes < 5) {
                     html = `<div class="status-box success">
-                        ✅ Sistema funcionando correctamente
-                        <br>Última sincronización: ${lastSync.toLocaleString('es-ES')}
-                        <br>Total de archivos: ${data.files.length}
+                        ✅ <strong>Sistema funcionando correctamente</strong>
+                        <br>📅 Última sincronización: ${lastSync.toLocaleString('es-ES')}
+                        <br>📊 Total de archivos: ${data.files.length}
                     </div>`;
                 } else if (diffMinutes < 60) {
                     html = `<div class="status-box info">
-                        ℹ️ Última sincronización hace ${diffMinutes} minutos
-                        <br>Hora: ${lastSync.toLocaleString('es-ES')}
-                        <br>Total de archivos: ${data.files.length}
+                        ℹ️ <strong>Última sincronización hace ${diffMinutes} minutos</strong>
+                        <br>📅 Hora: ${lastSync.toLocaleString('es-ES')}
+                        <br>📊 Total de archivos: ${data.files.length}
                     </div>`;
                 } else {
                     html = `<div class="status-box">
-                        Última sincronización: ${lastSync.toLocaleString('es-ES')}
-                        <br>Total de archivos: ${data.files.length}
+                        📅 Última sincronización: ${lastSync.toLocaleString('es-ES')}
+                        <br>📊 Total de archivos: ${data.files.length}
+                        <br>⚠️ Considera sincronizar manualmente
                     </div>`;
                 }
 
                 statusDiv.innerHTML = html;
             } catch (error) {
                 document.getElementById('sync-status').innerHTML = 
-                    `<div class="status-box error">❌ Error al verificar estado: ${error.message}</div>`;
+                    `<div class="status-box error">❌ Error: ${error.message}</div>`;
             }
         }
 
-        // Cargar estado al abrir
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             checkSyncStatus();
         });
