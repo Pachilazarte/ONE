@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICE Vocacional — Elegí tu carrera con certeza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:    #003DA5;
+  --blue2:   #002D7A;
+  --blue3:   #0052CC;
+  --yellow:  #F5C800;
+  --yellow2: #E6BB00;
+  --white:   #FFFFFF;
+  --dark:    #0C0C0C;
+  --grey:    #6B7280;
+  --lgrey:   #F4F6FB;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fff;color:#0C0C0C;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-bottom:3px solid var(--blue);box-shadow:0 2px 20px rgba(0,0,0,0.07)}
+.nav-brand{display:flex;align-items:center;gap:14px}
+.nav-divider{width:1px;height:30px;background:#ddd}
+.nav-sub{font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.76rem;color:#6B7280;letter-spacing:0.07em;text-transform:uppercase;line-height:1.4}
+.nav-sub span{display:block;color:var(--blue);font-weight:700}
+.nav-cta{background:var(--blue);color:white;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.82rem;letter-spacing:0.04em;padding:10px 24px;border-radius:6px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:background 0.2s,transform 0.2s}
+.nav-cta:hover{background:var(--blue2);transform:translateY(-1px)}
+
+/* ── HERO ── */
+#hero{position:relative;min-height:100vh;background:#06122B;display:flex;align-items:center;padding:100px 5vw 60px;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 18% 55%,rgba(0,61,165,0.35) 0%,transparent 55%),radial-gradient(circle at 80% 20%,rgba(245,200,0,0.1) 0%,transparent 45%);pointer-events:none}
+.hero-hex{position:absolute;inset:0;pointer-events:none;opacity:0.45;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 58,16 58,44 30,58 2,44 2,16' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");background-size:60px 52px}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr;gap:40px}}
+
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,61,165,0.25);border:1px solid rgba(0,61,165,0.5);border-radius:50px;padding:6px 16px;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#80a8ff;font-weight:600;margin-bottom:28px;animation:fadeUp 0.7s ease both}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:blink 1.8s infinite}
+.hero-h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2.5rem,5.5vw,4.1rem);line-height:1.0;letter-spacing:-0.03em;color:white;margin-bottom:8px;animation:fadeUp 0.8s ease 0.1s both}
+.hero-h1 .yellow{color:var(--yellow)}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,0.58);line-height:1.7;max-width:480px;margin:20px 0 36px;animation:fadeUp 0.9s ease 0.2s both}
+.hero-sub strong{color:rgba(255,255,255,0.88);font-weight:600}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 1s ease 0.3s both}
+
+.btn-blue{background:var(--blue);color:white;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.92rem;padding:15px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.25s}
+.btn-blue:hover{background:var(--blue3);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,61,165,0.5)}
+.btn-yellow{background:var(--yellow);color:#06122B;font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.92rem;padding:15px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.25s}
+.btn-yellow:hover{background:var(--yellow2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(245,200,0,0.4)}
+.btn-outline-w{background:transparent;color:white;font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.92rem;padding:14px 32px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.28);cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.25s}
+.btn-outline-w:hover{border-color:white;background:rgba(255,255,255,0.07)}
+
+/* mockup */
+.platform-card{background:#0e1a2e;border:1px solid #1a2d4a;border-radius:16px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,0.7);animation:fadeUp 1s ease 0.35s both}
+.plat-topbar{background:#0a1422;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1a2d4a}
+.plat-dots{display:flex;gap:6px}
+.plat-dots span{width:10px;height:10px;border-radius:50%}
+.plat-dots span:nth-child(1){background:#ff5f57}
+.plat-dots span:nth-child(2){background:#febc2e}
+.plat-dots span:nth-child(3){background:#28c840}
+.plat-url{background:#1a2d4a;border-radius:6px;padding:4px 14px;font-size:0.7rem;color:#4a6080;font-family:monospace}
+.plat-body{padding:22px 20px}
+.plat-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.plat-btn{background:var(--yellow);color:#06122B;font-size:0.68rem;font-weight:800;padding:6px 14px;border-radius:5px;font-family:'Montserrat',sans-serif}
+.plat-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(245,200,0,0.75);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.plat-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--yellow);animation:blink 1.8s infinite;display:inline-block}
+.plat-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:white;line-height:1.25;margin-bottom:18px}
+.plat-title span{color:var(--yellow)}
+.plat-tests{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.plat-test{background:#0a1422;border:1px solid #1a2d4a;border-radius:10px;padding:11px;cursor:pointer;transition:border-color 0.2s}
+.plat-test:hover{border-color:rgba(0,61,165,0.5)}
+.plat-test-icon{font-size:1.1rem;margin-bottom:5px}
+.plat-test-name{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.67rem;color:white;margin-bottom:3px}
+.plat-test-desc{font-size:0.57rem;color:#4a6080;line-height:1.4}
+.plat-test-btn{margin-top:7px;background:rgba(0,61,165,0.2);border:1px solid rgba(0,61,165,0.4);border-radius:4px;padding:3px 9px;font-size:0.59rem;color:#80a8ff;font-weight:600;display:inline-block;font-family:'Montserrat',sans-serif}
+.plat-radar{background:#0a1422;border:1px solid #1a2d4a;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.plat-radar-info .pr-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.67rem;color:white;margin-bottom:4px}
+.plat-radar-info .pr-sub{font-size:0.57rem;color:#4a6080;line-height:1.5}
+.plat-one{margin-top:11px;font-size:0.59rem;color:#2a3d55}
+.plat-one strong{color:#4a6080;font-family:'Montserrat',sans-serif;font-weight:700}
+
+/* ── SECCIONES GENERALES ── */
+.eyebrow{font-size:0.74rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:13px}
+.section-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:18px}
+.blue-line{width:48px;height:4px;background:var(--blue);border-radius:2px;margin-bottom:22px}
+.body-text{color:#444;font-size:0.97rem;line-height:1.78;margin-bottom:14px}
+.body-text strong{color:#0C0C0C;font-weight:600}
+
+/* ── CONTEXTO ── */
+#contexto{background:#fff;padding:90px 5vw}
+.ctx-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:768px){.ctx-inner{grid-template-columns:1fr;gap:40px}}
+.data-row{display:flex;gap:28px;margin-top:32px;flex-wrap:wrap}
+.data-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.3rem;color:var(--blue);line-height:1;margin-bottom:3px}
+.data-label{font-size:0.77rem;color:#6B7280;font-weight:500;line-height:1.4;max-width:120px}
+.prob-cards{display:flex;flex-direction:column;gap:15px}
+.prob-card{background:#F4F6FB;border-left:4px solid transparent;border-radius:0 10px 10px 0;padding:17px 20px;transition:all 0.2s}
+.prob-card.b{border-left-color:var(--blue)}
+.prob-card.y{border-left-color:var(--yellow);background:#FFFBEA}
+.prob-card:hover{transform:translateX(4px)}
+.prob-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:5px}
+.prob-desc{font-size:0.84rem;color:#6B7280;line-height:1.55}
+
+/* ── BANDA AZUL ── */
+#decision{background:var(--blue);padding:76px 5vw;position:relative;overflow:hidden}
+#decision::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 58,16 58,44 30,58 2,44 2,16' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");background-size:60px 52px}
+/* franja amarilla inferior */
+#decision::after{content:'';position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--yellow)}
+.dec-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;text-align:center}
+.dec-label{font-size:0.74rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:600;margin-bottom:14px}
+.dec-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.9rem,4.5vw,3.2rem);color:white;line-height:1.05;letter-spacing:-0.02em;margin-bottom:18px}
+.dec-title span{color:var(--yellow)}
+.dec-desc{color:rgba(255,255,255,0.78);font-size:1.04rem;line-height:1.7;max-width:660px;margin:0 auto 36px}
+.dec-pills{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.dec-pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);color:white;font-family:'Montserrat',sans-serif;font-weight:600;font-size:0.8rem;padding:9px 20px;border-radius:50px}
+.dec-pill.y{background:var(--yellow);border-color:var(--yellow);color:#06122B;font-weight:700}
+
+/* ── TESTS ── */
+#tests{background:#06122B;padding:100px 5vw}
+.sec-title-dk{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,3.5vw,2.7rem);line-height:1.1;letter-spacing:-0.02em;color:white;margin-bottom:14px}
+.sec-desc-dk{color:#4a6080;font-size:0.94rem;line-height:1.7}
+.tests-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:20px;margin-top:48px}
+.test-card{background:#0e1a2e;border:1px solid #1a2d4a;border-radius:14px;padding:28px 24px;transition:all 0.3s;position:relative;overflow:hidden}
+.test-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--yellow),transparent);opacity:0;transition:opacity 0.3s}
+.test-card:hover{border-color:#2a4070;transform:translateY(-4px);background:#0a1828}
+.test-card:hover::after{opacity:1}
+.test-emoji{font-size:1.9rem;margin-bottom:14px;display:block}
+.test-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.08rem;color:white;margin-bottom:4px}
+.test-full{font-size:0.73rem;color:var(--yellow);font-weight:600;letter-spacing:0.03em;margin-bottom:11px}
+.test-desc{color:#4a6080;font-size:0.87rem;line-height:1.65;margin-bottom:17px}
+.test-tags{display:flex;flex-wrap:wrap;gap:6px}
+.test-tag{font-size:0.67rem;padding:4px 11px;border-radius:4px;font-weight:600;background:rgba(0,61,165,0.2);color:#80a8ff;border:1px solid rgba(0,61,165,0.35)}
+
+/* ── RESULTADO ── */
+#resultado{background:white;padding:100px 5vw}
+.res-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+@media(max-width:768px){.res-inner{grid-template-columns:1fr;gap:40px}}
+.informe-card{background:white;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.09)}
+.inf-header{background:#06122B;padding:18px 22px;display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--yellow)}
+.inf-logo-circle{width:42px;height:42px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--yellow)}
+.inf-header-text{flex:1}
+.inf-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.97rem;color:white}
+.inf-sub{font-size:0.7rem;color:#4a6080;margin-top:2px}
+.inf-conf{background:rgba(245,200,0,0.15);border:1px solid rgba(245,200,0,0.4);color:var(--yellow);font-size:0.6rem;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:0.06em}
+.inf-body{padding:22px}
+.inf-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#eee;border-radius:8px;overflow:hidden;margin-bottom:18px}
+.inf-meta-cell{background:white;padding:12px;text-align:center}
+.inf-meta-label{font-size:0.6rem;color:#aaa;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em}
+.inf-meta-val{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.8rem}
+.radar-box{background:#f9fafe;border:1px solid #e5eaf5;border-radius:10px;padding:14px;margin-bottom:15px;text-align:center}
+.radar-box-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.76rem;color:#0C0C0C;margin-bottom:10px;display:flex;align-items:center;gap:6px;justify-content:center}
+.comp-title-sm{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.73rem;color:#333;margin-bottom:9px;text-transform:uppercase;letter-spacing:0.05em}
+.comp-row{margin-bottom:8px}
+.comp-lbl{display:flex;justify-content:space-between;margin-bottom:3px}
+.comp-name{font-size:0.7rem;color:#555;font-weight:500}
+.comp-pct{font-size:0.7rem;color:var(--blue);font-weight:700}
+.comp-bar{height:6px;background:#e5eaf5;border-radius:3px;overflow:hidden}
+.comp-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),var(--blue3))}
+.res-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(0,61,165,0.07);border:1px solid rgba(0,61,165,0.2);border-radius:50px;padding:6px 16px;font-size:0.7rem;color:var(--blue);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px}
+.res-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.65rem,3vw,2.3rem);line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px}
+.res-line{width:44px;height:4px;background:var(--yellow);border-radius:2px;margin-bottom:18px}
+.res-text{color:#555;font-size:0.94rem;line-height:1.75;margin-bottom:13px}
+.res-text strong{color:#0C0C0C;font-weight:600}
+.beneficios{margin-top:26px;display:flex;flex-direction:column;gap:11px}
+.benef{display:flex;align-items:flex-start;gap:13px;padding:13px 15px;border-radius:8px;background:#fafbff;border:1px solid #e5eaf5;transition:border-color 0.2s}
+.benef:hover{border-color:rgba(0,61,165,0.25)}
+.benef-icon{width:35px;height:35px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+.benef-text strong{display:block;font-weight:700;font-size:0.86rem;margin-bottom:2px}
+.benef-text span{font-size:0.78rem;color:#6B7280;line-height:1.5}
+
+/* ── TECNICATURAS ── */
+#tecnicaturas{background:#F4F6FB;padding:90px 5vw}
+.tec-header{text-align:center;margin-bottom:48px}
+.tec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+.tec-card{background:white;border:1px solid #e5eaf5;border-top:4px solid var(--blue);border-radius:12px;padding:24px 20px;text-align:center;transition:all 0.3s}
+.tec-card:hover{box-shadow:0 10px 28px rgba(0,61,165,0.12);transform:translateY(-3px);border-top-color:var(--yellow)}
+.tec-emoji{font-size:2rem;margin-bottom:12px;display:block}
+.tec-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.88rem;margin-bottom:6px;line-height:1.3}
+.tec-desc{font-size:0.78rem;color:#6B7280;line-height:1.55}
+
+/* ── INNOVACIÓN ── */
+#innovacion{background:#06122B;padding:100px 5vw}
+.inno-inner{max-width:1100px;margin:0 auto;text-align:center}
+.inno-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.9rem,4vw,3.1rem);color:white;letter-spacing:-0.02em;margin-bottom:14px;line-height:1.08}
+.inno-title .y{color:var(--yellow)}
+.inno-sub{color:#4a6080;font-size:0.97rem;line-height:1.7;max-width:560px;margin:0 auto 48px}
+.inno-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.inno-grid{grid-template-columns:1fr}}
+.inno-card{background:#0e1a2e;border:1px solid #1a2d4a;border-radius:14px;padding:30px 22px;text-align:left;transition:all 0.3s}
+.inno-card:hover{border-color:rgba(245,200,0,0.3);transform:translateY(-3px)}
+.inno-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.7rem;line-height:1;margin-bottom:11px}
+.inno-card:nth-child(1) .inno-num{color:var(--yellow)}
+.inno-card:nth-child(2) .inno-num{color:#80a8ff}
+.inno-card:nth-child(3) .inno-num{color:var(--yellow)}
+.inno-card-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.97rem;color:white;margin-bottom:9px}
+.inno-card-desc{font-size:0.86rem;color:#4a6080;line-height:1.65}
+.ice-quote{margin-top:52px;background:var(--blue);border-radius:14px;padding:38px 46px;position:relative;overflow:hidden;border-bottom:4px solid var(--yellow)}
+.ice-quote::before{content:'"';position:absolute;top:-20px;left:28px;font-family:'Montserrat',sans-serif;font-size:9rem;font-weight:900;color:rgba(255,255,255,0.06);line-height:1;pointer-events:none}
+.ice-quote-text{font-family:'Montserrat',sans-serif;font-weight:700;font-size:clamp(1.05rem,2.5vw,1.45rem);color:white;line-height:1.5;position:relative;z-index:1;text-align:center}
+.ice-quote-author{margin-top:14px;font-size:0.8rem;color:rgba(255,255,255,0.55);text-align:center;font-weight:500}
+
+/* ── PROCESO ── */
+#proceso{background:#fff;padding:90px 5vw}
+.proc-inner{max-width:1000px;margin:0 auto}
+.proc-header{text-align:center;margin-bottom:48px}
+.proc-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:20px}
+.proc-step{text-align:center}
+.proc-circle{width:62px;height:62px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:white;box-shadow:0 8px 22px rgba(0,61,165,0.35);transition:all 0.3s}
+.proc-step:hover .proc-circle{transform:scale(1.1);box-shadow:0 12px 30px rgba(0,61,165,0.45);background:var(--yellow);color:#06122B}
+.proc-step-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.86rem;margin-bottom:6px}
+.proc-step-desc{font-size:0.78rem;color:#6B7280;line-height:1.6}
+
+/* ── FAMILIAS ── */
+#familias{background:#F4F6FB;padding:80px 5vw}
+.fam-inner{max-width:960px;margin:0 auto;text-align:center}
+.fam-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,3.5vw,2.5rem);letter-spacing:-0.02em;margin-bottom:14px}
+.fam-sub{color:#666;font-size:0.97rem;line-height:1.7;max-width:560px;margin:0 auto 42px}
+.fam-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.fam-card{background:white;border:1px solid #e5eaf5;border-top:4px solid var(--blue);border-radius:12px;padding:26px 20px;text-align:left;transition:all 0.3s}
+.fam-card:hover{box-shadow:0 10px 28px rgba(0,61,165,0.1);transform:translateY(-3px);border-top-color:var(--yellow)}
+.fam-emoji{font-size:1.7rem;margin-bottom:12px}
+.fam-card-title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:0.9rem;margin-bottom:7px}
+.fam-card-desc{font-size:0.83rem;color:#6B7280;line-height:1.6}
+
+/* ── CTA ── */
+#cta{background:var(--blue);padding:100px 5vw;text-align:center;position:relative;overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='52' viewBox='0 0 60 52'%3E%3Cpolygon points='30,2 58,16 58,44 30,58 2,44 2,16' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");background-size:60px 52px}
+#cta::after{content:'';position:absolute;bottom:0;left:0;right:0;height:5px;background:var(--yellow)}
+.cta-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.cta-h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(2rem,4.5vw,3.3rem);color:white;line-height:1.05;letter-spacing:-0.02em;margin-bottom:16px}
+.cta-p{color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.7;margin-bottom:34px}
+.cta-box{background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.18);border-radius:12px;padding:30px 34px;margin-bottom:22px}
+.cta-box-title{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.05rem;color:white;margin-bottom:14px}
+.cta-form{display:flex;gap:12px;flex-wrap:wrap}
+.cta-input{flex:1;min-width:200px;background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.22);border-radius:7px;padding:12px 18px;color:white;font-family:'Inter',sans-serif;font-size:0.88rem;outline:none;transition:border-color 0.2s}
+.cta-input:focus{border-color:var(--yellow)}
+.cta-input::placeholder{color:rgba(255,255,255,0.4)}
+.btn-yellow-solid{background:var(--yellow);color:#06122B;font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.88rem;padding:12px 26px;border-radius:7px;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.25s;white-space:nowrap}
+.btn-yellow-solid:hover{background:var(--yellow2);transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,0.25)}
+.cta-fine{font-size:0.78rem;color:rgba(255,255,255,0.45)}
+
+/* ── FOOTER ── */
+footer{background:#06122B;border-top:4px solid var(--yellow);padding:38px 5vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.foot-brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.05rem;color:white}
+.foot-brand span{color:var(--yellow)}
+.foot-info{font-size:0.78rem;color:#4a6080;line-height:1.7;margin-top:4px}
+.foot-one{font-size:0.76rem;color:#2a3d55}
+.foot-one strong{color:#4a6080;font-family:'Montserrat',sans-serif;font-weight:700}
+
+/* ── RADAR SVG ── */
+.r-poly{fill:rgba(0,61,165,0.18);stroke:#003DA5;stroke-width:1.5}
+.r-axis{stroke:#1a2d4a;stroke-width:0.6}
+.r-circle{fill:none;stroke:#1a2d4a;stroke-width:0.6}
+.r-dot{fill:#F5C800}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <svg height="44" viewBox="0 0 205 44" xmlns="http://www.w3.org/2000/svg">
+      <!-- Isotipo: cuadrado azul con franja amarilla base y letra I blanca -->
+      <rect x="0" y="2" width="40" height="40" rx="6" fill="#003DA5"/>
+      <rect x="0" y="33" width="40" height="9" rx="0" fill="#F5C800"/>
+      <rect x="0" y="36" width="40" height="6" rx="0 0 6 6" fill="#F5C800"/>
+      <rect x="17" y="7" width="6" height="24" rx="3" fill="white"/>
+      <rect x="10" y="7" width="20" height="6" rx="2.5" fill="white"/>
+      <rect x="10" y="25" width="20" height="5" rx="2" fill="white"/>
+      <!-- Wordmark -->
+      <text x="50" y="18" font-family="Montserrat,sans-serif" font-weight="900" font-size="16" fill="#003DA5" letter-spacing="2">ICE</text>
+      <text x="50" y="31" font-family="Montserrat,sans-serif" font-weight="600" font-size="8.2" fill="#777" letter-spacing="0.3">INST. DE CIENCIAS</text>
+      <text x="50" y="42" font-family="Montserrat,sans-serif" font-weight="600" font-size="8.2" fill="#777" letter-spacing="0.3">EMPRESARIALES</text>
+    </svg>
+    <div class="nav-divider"></div>
+    <div class="nav-sub">Instituto Terciario<br><span>Orientación Vocacional</span></div>
+  </div>
+  <a href="#cta" class="nav-cta">Iniciar mi test</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-hex"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge"><span class="dot"></span>ICE Vocacional · Tucumán · 2025</div>
+      <h1 class="hero-h1">
+        Elegí tu carrera<br>con <span class="yellow">certeza</span><br>y con <span class="yellow">método.</span>
+      </h1>
+      <p class="hero-sub">El <strong>ICE</strong> desarrolló la plataforma de orientación vocacional exclusiva del NOA. Tests científicos, resultados personalizados y acompañamiento real para que elijas con firmeza.</p>
+      <div class="hero-btns">
+        <a href="#tests" class="btn-yellow">Ver los tests disponibles</a>
+        <a href="#proceso" class="btn-outline-w">¿Cómo funciona?</a>
+      </div>
+    </div>
+    <div>
+      <div class="platform-card">
+        <div class="plat-topbar">
+          <div class="plat-dots"><span></span><span></span><span></span></div>
+          <div class="plat-url">iceweb.edu.ar/vocacional</div>
+          <div></div>
+        </div>
+        <div class="plat-body">
+          <div class="plat-nav">
+            <svg height="28" viewBox="0 0 130 28" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0" y="1" width="26" height="26" rx="4" fill="#003DA5"/>
+              <rect x="0" y="20" width="26" height="7" rx="0 0 4 4" fill="#F5C800"/>
+              <rect x="10" y="4" width="4" height="14" rx="2" fill="white"/>
+              <rect x="6" y="4" width="12" height="4" rx="1.5" fill="white"/>
+              <rect x="6" y="14" width="12" height="4" rx="1.5" fill="white"/>
+              <text x="33" y="13" font-family="Montserrat,sans-serif" font-weight="900" font-size="11" fill="#80a8ff" letter-spacing="1">ICE</text>
+              <text x="33" y="23" font-family="Montserrat,sans-serif" font-weight="600" font-size="7" fill="#4a6080" letter-spacing="0.3">Vocacional</text>
+            </svg>
+            <div class="plat-btn">Iniciar Test</div>
+          </div>
+          <div class="plat-label">Orientación Vocacional Inteligente</div>
+          <div class="plat-title">Tu carrera ideal<br>empieza con <span>un test.</span></div>
+          <div class="plat-tests">
+            <div class="plat-test"><div class="plat-test-icon">🧩</div><div class="plat-test-name">Test DAT</div><div class="plat-test-desc">Aptitudes cognitivas</div><div class="plat-test-btn">Comenzar →</div></div>
+            <div class="plat-test"><div class="plat-test-icon">🎯</div><div class="plat-test-name">Test KUDER</div><div class="plat-test-desc">Intereses profesionales</div><div class="plat-test-btn">Comenzar →</div></div>
+            <div class="plat-test"><div class="plat-test-icon">💼</div><div class="plat-test-name">Test IPP</div><div class="plat-test-desc">Preferencias laborales</div><div class="plat-test-btn">Comenzar →</div></div>
+            <div class="plat-test"><div class="plat-test-icon">🧠</div><div class="plat-test-name">Test WAIS</div><div class="plat-test-desc">Inteligencia y memoria</div><div class="plat-test-btn">Comenzar →</div></div>
+          </div>
+          <div class="plat-radar">
+            <svg width="50" height="50" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="44" class="r-circle"/><circle cx="50" cy="50" r="29" class="r-circle"/><circle cx="50" cy="50" r="14" class="r-circle"/>
+              <line x1="50" y1="6" x2="50" y2="94" class="r-axis"/><line x1="6" y1="50" x2="94" y2="50" class="r-axis"/>
+              <line x1="18" y1="18" x2="82" y2="82" class="r-axis"/><line x1="82" y1="18" x2="18" y2="82" class="r-axis"/>
+              <polygon points="50,22 65,40 72,62 50,76 30,60 35,38" class="r-poly"/>
+              <circle cx="50" cy="22" r="3.5" class="r-dot"/><circle cx="65" cy="40" r="3.5" class="r-dot"/>
+              <circle cx="72" cy="62" r="3.5" class="r-dot"/><circle cx="50" cy="76" r="3.5" class="r-dot"/>
+              <circle cx="30" cy="60" r="3.5" class="r-dot"/><circle cx="35" cy="38" r="3.5" class="r-dot"/>
+            </svg>
+            <div class="plat-radar-info"><div class="pr-title">Mapa de Competencias</div><div class="pr-sub">Informe personalizado · Confidencial · Orientador ICE</div></div>
+          </div>
+          <div class="plat-one">Powered by <strong>©NE · Escencial Consultora</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTO -->
+<section id="contexto">
+  <div class="ctx-inner">
+    <div class="reveal">
+      <div class="eyebrow">El desafío real</div>
+      <h2 class="section-title">Elegir una carrera<br>no es un trámite.<br>Es una decisión de vida.</h2>
+      <div class="blue-line"></div>
+      <p class="body-text">El ICE nació en 1997 con una misión clara: <strong>dar respuesta real a la demanda de formación técnica</strong> orientada al mundo laboral. Hoy, más de 25 años después, da un paso más.</p>
+      <p class="body-text">Porque la matrícula es solo el comienzo. El verdadero valor está en que cada alumno llegue a su tecnicatura con <strong>convicción, datos y acompañamiento.</strong></p>
+      <div class="data-row">
+        <div><div class="data-num">25+</div><div class="data-label">años formando profesionales en Tucumán</div></div>
+        <div><div class="data-num">5</div><div class="data-label">tecnicaturas con salida laboral real</div></div>
+        <div><div class="data-num">70%</div><div class="data-label">de jóvenes cambia de carrera sin orientación</div></div>
+      </div>
+    </div>
+    <div class="prob-cards reveal">
+      <div class="prob-card b"><div class="prob-title">🎯 Decisión sin información real</div><div class="prob-desc">La mayoría elige carrera basándose en lo superficial, sin conocer sus aptitudes ni las salidas laborales concretas de cada tecnicatura.</div></div>
+      <div class="prob-card y"><div class="prob-title">⏳ El primer año sin rumbo claro</div><div class="prob-desc">Sin orientación previa, muchos ingresantes dudan y abandonan en el primer año. Un test a tiempo cambia todo.</div></div>
+      <div class="prob-card b"><div class="prob-title">👨‍👩‍👧 Las familias también necesitan herramientas</div><div class="prob-desc">Los padres quieren orientar pero no siempre cuentan con datos objetivos. ICE Vocacional les da un informe claro.</div></div>
+      <div class="prob-card y"><div class="prob-title">🏛️ La transición secundario → terciario</div><div class="prob-desc">El salto al nivel superior es crítico. Llegar con un perfil vocacional definido es la diferencia entre terminar y abandonar.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BANDA AZUL -->
+<section id="decision">
+  <div class="dec-inner reveal">
+    <div class="dec-label">El compromiso del ICE</div>
+    <h2 class="dec-title">Por eso el ICE<br>desarrolló <span>ICE Vocacional.</span></h2>
+    <p class="dec-desc">Una plataforma exclusiva para la comunidad ICE. Tecnología psicométrica de validación internacional, adaptada a las 5 tecnicaturas y al mercado laboral del NOA.</p>
+    <div class="dec-pills">
+      <span class="dec-pill y">✓ Tests psicométricos validados</span>
+      <span class="dec-pill">✓ Informes personalizados</span>
+      <span class="dec-pill">✓ Match con tecnicaturas ICE</span>
+      <span class="dec-pill">✓ Acompañamiento de orientadores</span>
+      <span class="dec-pill">✓ Datos confidenciales y seguros</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTS -->
+<section id="tests">
+  <div class="reveal" style="max-width:620px;margin-bottom:0">
+    <div class="eyebrow" style="color:var(--yellow)">Los tests disponibles</div>
+    <h2 class="sec-title-dk">Cuatro evaluaciones.<br>Un perfil completo.</h2>
+    <p class="sec-desc-dk">Cada test mide una dimensión distinta. Juntos construyen el mapa más preciso de tus aptitudes, intereses y perfil cognitivo.</p>
+  </div>
+  <div class="tests-grid">
+    <div class="test-card reveal"><span class="test-emoji">🧩</span><div class="test-name">Test DAT</div><div class="test-full">Differential Aptitude Test</div><p class="test-desc">Evalúa aptitudes cognitivas: verbal, numérico, abstracto, espacial, rapidez y precisión. Identifica dónde tu mente brilla y qué tecnicatura ICE lo potencia.</p><div class="test-tags"><span class="test-tag">Verbal</span><span class="test-tag">Numérico</span><span class="test-tag">Abstracto</span><span class="test-tag">Espacial</span></div></div>
+    <div class="test-card reveal"><span class="test-emoji">🎯</span><div class="test-name">Test KUDER</div><div class="test-full">Inventario de Intereses Vocacionales</div><p class="test-desc">Descubre en qué áreas profesionales tenés mayor interés: empresarial, social, científico, administrativo. El match entre lo que te apasiona y lo que podés hacer.</p><div class="test-tags"><span class="test-tag">Intereses</span><span class="test-tag">Áreas profesionales</span><span class="test-tag">Match vocacional</span></div></div>
+    <div class="test-card reveal"><span class="test-emoji">💼</span><div class="test-name">Test IPP</div><div class="test-full">Inventario de Preferencias Profesionales</div><p class="test-desc">Analiza tu atracción hacia distintos campos laborales. Fundamental para elegir entre RRHH, Contable, Higiene, Traductorado o Administración de Empresas.</p><div class="test-tags"><span class="test-tag">Profesiones</span><span class="test-tag">Campos laborales</span><span class="test-tag">Satisfacción</span></div></div>
+    <div class="test-card reveal"><span class="test-emoji">🧠</span><div class="test-name">Test WAIS</div><div class="test-full">Escala de Inteligencia de Wechsler</div><p class="test-desc">Referencia internacional para evaluar inteligencia y capacidades cognitivas: comprensión verbal, razonamiento, memoria de trabajo y velocidad de procesamiento.</p><div class="test-tags"><span class="test-tag">Coef. intelectual</span><span class="test-tag">Razonamiento</span><span class="test-tag">Memoria</span></div></div>
+  </div>
+</section>
+
+<!-- RESULTADO -->
+<section id="resultado">
+  <div class="res-inner">
+    <div class="informe-card reveal">
+      <div class="inf-header">
+        <div class="inf-logo-circle">
+          <svg width="22" height="22" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+            <rect x="11" y="2" width="6" height="20" rx="3" fill="white"/>
+            <rect x="5" y="2" width="18" height="6" rx="2.5" fill="white"/>
+            <rect x="5" y="18" width="18" height="5" rx="2" fill="white"/>
+            <rect x="0" y="23" width="28" height="5" rx="0 0 2 2" fill="#F5C800"/>
+          </svg>
+        </div>
+        <div class="inf-header-text">
+          <div class="inf-title">Informe Vocacional ICE</div>
+          <div class="inf-sub">Evaluación DAT — Instituto de Ciencias Empresariales</div>
+        </div>
+        <div class="inf-conf">🔒 CONFIDENCIAL</div>
+      </div>
+      <div class="inf-body">
+        <div class="inf-meta">
+          <div class="inf-meta-cell"><div class="inf-meta-label">Evaluado/a</div><div class="inf-meta-val">Tu nombre aquí</div></div>
+          <div class="inf-meta-cell"><div class="inf-meta-label">Fecha</div><div class="inf-meta-val">2025</div></div>
+          <div class="inf-meta-cell"><div class="inf-meta-label">ID</div><div class="inf-meta-val" style="color:var(--blue)">DAT-ICE</div></div>
+        </div>
+        <div class="radar-box">
+          <div class="radar-box-title">🎯 Mapa de Competencias</div>
+          <svg width="170" height="150" viewBox="0 0 200 180" style="display:block;margin:0 auto">
+            <line x1="100" y1="10" x2="100" y2="170" stroke="#c8d8f0" stroke-width="0.7"/>
+            <line x1="10" y1="90" x2="190" y2="90" stroke="#c8d8f0" stroke-width="0.7"/>
+            <line x1="28" y1="28" x2="172" y2="152" stroke="#c8d8f0" stroke-width="0.7"/>
+            <line x1="172" y1="28" x2="28" y2="152" stroke="#c8d8f0" stroke-width="0.7"/>
+            <circle cx="100" cy="90" r="80" fill="none" stroke="#dce8f8" stroke-width="0.7"/>
+            <circle cx="100" cy="90" r="53" fill="none" stroke="#dce8f8" stroke-width="0.7"/>
+            <circle cx="100" cy="90" r="27" fill="none" stroke="#dce8f8" stroke-width="0.7"/>
+            <text x="100" y="6" text-anchor="middle" font-size="8" fill="#aaa" font-family="Inter">Verbal</text>
+            <text x="196" y="93" text-anchor="start" font-size="8" fill="#aaa" font-family="Inter">Numérico</text>
+            <text x="100" y="178" text-anchor="middle" font-size="8" fill="#aaa" font-family="Inter">Espacial</text>
+            <text x="4" y="93" text-anchor="end" font-size="8" fill="#aaa" font-family="Inter">Precisión</text>
+            <text x="172" y="26" text-anchor="start" font-size="8" fill="#aaa" font-family="Inter">Rapidez</text>
+            <text x="28" y="26" text-anchor="end" font-size="8" fill="#aaa" font-family="Inter">Abstracto</text>
+            <polygon points="100,34 152,58 158,120 100,158 55,118 58,50" fill="rgba(0,61,165,0.15)" stroke="#003DA5" stroke-width="1.5"/>
+            <circle cx="100" cy="34" r="3.5" fill="#F5C800"/><circle cx="152" cy="58" r="3.5" fill="#F5C800"/>
+            <circle cx="158" cy="120" r="3.5" fill="#F5C800"/><circle cx="100" cy="158" r="3.5" fill="#F5C800"/>
+            <circle cx="55" cy="118" r="3.5" fill="#F5C800"/><circle cx="58" cy="50" r="3.5" fill="#F5C800"/>
+          </svg>
+        </div>
+        <div class="comp-title-sm">Análisis de Aptitudes</div>
+        <div class="comp-row"><div class="comp-lbl"><span class="comp-name">Razonamiento Verbal</span><span class="comp-pct">82%</span></div><div class="comp-bar"><div class="comp-fill" style="width:82%"></div></div></div>
+        <div class="comp-row"><div class="comp-lbl"><span class="comp-name">Aptitud Numérica</span><span class="comp-pct">68%</span></div><div class="comp-bar"><div class="comp-fill" style="width:68%"></div></div></div>
+        <div class="comp-row"><div class="comp-lbl"><span class="comp-name">Razonamiento Abstracto</span><span class="comp-pct">75%</span></div><div class="comp-bar"><div class="comp-fill" style="width:75%"></div></div></div>
+        <div class="comp-row"><div class="comp-lbl"><span class="comp-name">Rapidez y Precisión</span><span class="comp-pct">90%</span></div><div class="comp-bar"><div class="comp-fill" style="width:90%"></div></div></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="res-pill">El resultado</div>
+      <h2 class="res-title">Tu informe vocacional:<br>completo, claro<br>y accionable.</h2>
+      <div class="res-line"></div>
+      <p class="res-text">Completados los tests, recibís un <strong>informe vocacional personalizado</strong> con tus aptitudes, intereses, estilo cognitivo y las tecnicaturas ICE que mejor se alinean con tu perfil real.</p>
+      <p class="res-text">Un análisis profundo interpretado por el equipo de <strong>orientación del ICE</strong> para que vos y tu familia tomen la mejor decisión.</p>
+      <div class="beneficios">
+        <div class="benef"><div class="benef-icon">📊</div><div class="benef-text"><strong>Mapa de Competencias visual</strong><span>Gráfico radar con tus fortalezas, claro para vos y tu familia.</span></div></div>
+        <div class="benef"><div class="benef-icon">🎓</div><div class="benef-text"><strong>Match con las 5 tecnicaturas ICE</strong><span>Qué carrera se alinea mejor con tu perfil, con datos de salida laboral en el NOA.</span></div></div>
+        <div class="benef"><div class="benef-icon">🔒</div><div class="benef-text"><strong>Confidencial y seguro</strong><span>Tu informe es privado. Solo vos y tu orientador ICE tienen acceso.</span></div></div>
+        <div class="benef"><div class="benef-icon">👩‍🏫</div><div class="benef-text"><strong>Sesión de devolución personalizada</strong><span>Los resultados son el inicio de una conversación. Tu orientador ICE te acompaña.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECNICATURAS -->
+<section id="tecnicaturas">
+  <div class="tec-header reveal">
+    <div class="eyebrow">Las carreras del ICE</div>
+    <h2 class="section-title">5 tecnicaturas.<br>Todas con salida laboral real.</h2>
+    <p style="color:#6B7280;font-size:0.96rem;max-width:500px;margin:0 auto">ICE Vocacional te ayuda a identificar cuál de estas carreras se adapta mejor a tu perfil y tus metas.</p>
+  </div>
+  <div class="tec-grid">
+    <div class="tec-card reveal"><span class="tec-emoji">👥</span><div class="tec-name">Recursos Humanos</div><div class="tec-desc">Gestión del talento, selección, capacitación y desarrollo organizacional.</div></div>
+    <div class="tec-card reveal"><span class="tec-emoji">🏢</span><div class="tec-name">Administración de Empresas</div><div class="tec-desc">Gestión, planificación y dirección de organizaciones públicas y privadas.</div></div>
+    <div class="tec-card reveal"><span class="tec-emoji">📊</span><div class="tec-name">Administración Contable</div><div class="tec-desc">Gestión impositiva, contabilidad y administración financiera empresarial.</div></div>
+    <div class="tec-card reveal"><span class="tec-emoji">⛑️</span><div class="tec-name">Higiene y Seguridad</div><div class="tec-desc">Prevención de riesgos laborales, normativa y seguridad en el trabajo.</div></div>
+    <div class="tec-card reveal"><span class="tec-emoji">🌐</span><div class="tec-name">Traductorado en Inglés</div><div class="tec-desc">Traducción técnica y literaria con alta demanda en el mercado profesional.</div></div>
+  </div>
+</section>
+
+<!-- INNOVACIÓN -->
+<section id="innovacion">
+  <div class="inno-inner">
+    <div class="reveal">
+      <div class="eyebrow" style="color:var(--yellow)">El ICE que innova</div>
+      <h2 class="inno-title">Pioneros en formación laboral.<br>Ahora también en <span class="y">orientar futuros.</span></h2>
+      <p class="inno-sub">ICE Vocacional no es un servicio más. Es la demostración de que el ICE nunca deja de innovar para dar más a sus alumnos.</p>
+    </div>
+    <div class="inno-grid">
+      <div class="inno-card reveal"><div class="inno-num">100%</div><div class="inno-card-title">Exclusiva para la comunidad ICE</div><div class="inno-card-desc">Esta plataforma no existe en ningún otro terciario del NOA. Un desarrollo a medida para los alumnos e ingresantes del ICE Tucumán.</div></div>
+      <div class="inno-card reveal"><div class="inno-num">4</div><div class="inno-card-title">Tests de validación internacional</div><div class="inno-card-desc">DAT, KUDER, IPP y WAIS son instrumentos utilizados en universidades y organizaciones de todo el mundo. Ahora al alcance de cada alumno ICE.</div></div>
+      <div class="inno-card reveal"><div class="inno-num">∞</div><div class="inno-card-title">Actualización continua</div><div class="inno-card-desc">La plataforma evoluciona con el mercado laboral del NOA. Las recomendaciones siempre reflejan la demanda profesional real de Tucumán.</div></div>
+    </div>
+    <div class="ice-quote reveal">
+      <div class="ice-quote-text">"Queremos ser una valiosa posibilidad para quienes aspiran a concretar sus metas de superación profesional y personal. ICE Vocacional es esa posibilidad, hecha tecnología."</div>
+      <div class="ice-quote-author">Instituto de Ciencias Empresariales · Tucumán · Pioneros en formación laboral desde 1997</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso">
+  <div class="proc-inner">
+    <div class="proc-header reveal">
+      <div class="eyebrow">El camino</div>
+      <h2 class="section-title" style="text-align:center">Simple para el alumno.<br>Poderoso por dentro.</h2>
+    </div>
+    <div class="proc-steps">
+      <div class="proc-step reveal"><div class="proc-circle">1</div><div class="proc-step-title">Accedés con tu usuario ICE</div><div class="proc-step-desc">Ingresás desde cualquier dispositivo con tu cuenta del instituto.</div></div>
+      <div class="proc-step reveal"><div class="proc-circle">2</div><div class="proc-step-title">Realizás los tests</div><div class="proc-step-desc">Respondés las evaluaciones de forma guiada, a tu ritmo y sin presión.</div></div>
+      <div class="proc-step reveal"><div class="proc-circle">3</div><div class="proc-step-title">Recibís tu informe</div><div class="proc-step-desc">Mapa de competencias + tecnicaturas ICE recomendadas según tu perfil.</div></div>
+      <div class="proc-step reveal"><div class="proc-circle">4</div><div class="proc-step-title">Tu orientador te acompaña</div><div class="proc-step-desc">El equipo ICE interpreta los resultados con vos y tu familia.</div></div>
+      <div class="proc-step reveal"><div class="proc-circle">5</div><div class="proc-step-title">Elegís con certeza</div><div class="proc-step-desc">Arrancás tu tecnicatura con convicción y el respaldo del ICE.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILIAS -->
+<section id="familias">
+  <div class="fam-inner">
+    <div class="reveal">
+      <div class="eyebrow" style="text-align:center">Para las familias ICE</div>
+      <h2 class="fam-title">La decisión de tu hijo<br>también es tuya.</h2>
+      <p class="fam-sub">ICE Vocacional fue pensada para que padres e hijos tengan una conversación basada en datos reales, no en suposiciones.</p>
+    </div>
+    <div class="fam-cards">
+      <div class="fam-card reveal"><div class="fam-emoji">📋</div><div class="fam-card-title">Informe comprensible para familias</div><div class="fam-card-desc">Redactado en lenguaje claro. Cualquier padre entiende el perfil de su hijo sin formación en psicología.</div></div>
+      <div class="fam-card reveal"><div class="fam-emoji">🤝</div><div class="fam-card-title">Sesión de devolución familiar</div><div class="fam-card-desc">Los padres pueden participar de la sesión con el orientador ICE. Conversación estructurada con datos concretos.</div></div>
+      <div class="fam-card reveal"><div class="fam-emoji">🎯</div><div class="fam-card-title">Match con salida laboral real</div><div class="fam-card-desc">Las recomendaciones incluyen perspectivas laborales actuales de cada tecnicatura en Tucumán y el NOA.</div></div>
+      <div class="fam-card reveal"><div class="fam-emoji">🔐</div><div class="fam-card-title">Privacidad total garantizada</div><div class="fam-card-desc">Los datos del alumno son confidenciales. El ICE cumple estándares de protección de la información.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-inner">
+    <h2 class="cta-h2 reveal">¿Listo para descubrir<br>tu tecnicatura ideal?</h2>
+    <p class="cta-p reveal">ICE Vocacional está disponible para todos los alumnos e ingresantes. Hablá con orientación o pedí más información para comenzar hoy.</p>
+    <div class="cta-box reveal">
+      <div class="cta-box-title">Pedí información sobre ICE Vocacional</div>
+      <div class="cta-form">
+        <input class="cta-input" type="text" placeholder="Tu nombre completo">
+        <input class="cta-input" type="text" placeholder="¿Qué tecnicatura te interesa?">
+        <a href="https://wa.me/5493816436473" class="btn-yellow-solid">Quiero saber más</a>
+      </div>
+    </div>
+    <p class="cta-fine reveal">San Martín 145, San Miguel de Tucumán · (0381) 430-2480 · iceweb.edu.ar</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+      <svg height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="32" height="32" rx="5" fill="#003DA5"/>
+        <rect x="0" y="24" width="32" height="8" rx="0 0 5 5" fill="#F5C800"/>
+        <rect x="13" y="5" width="5" height="16" rx="2.5" fill="white"/>
+        <rect x="7" y="5" width="17" height="5" rx="2" fill="white"/>
+        <rect x="7" y="17" width="17" height="4" rx="2" fill="white"/>
+      </svg>
+      <div class="foot-brand">ICE <span>Vocacional</span></div>
+    </div>
+    <div class="foot-info">Instituto de Ciencias Empresariales · San Martín 145, San Miguel de Tucumán<br>(0381) 430-2480 · iceweb.edu.ar</div>
+  </div>
+  <div class="foot-one">Tecnología psicométrica: <strong>©NE · Escencial Consultora</strong></div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 60);
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => obs.observe(el));
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.boxShadow =
+    window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.11)' : '0 2px 20px rgba(0,0,0,0.07)';
+});
+</script>
+</body>
+</html>
