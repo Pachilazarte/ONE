@@ -2,23 +2,33 @@
   command = "echo 'No build needed'"
   publish = "."
 
+# IMPORTANTE: El orden de las reglas importa.
+# Netlify evalúa de arriba hacia abajo.
+
+# Regla 1: archivos estáticos en la raíz (index.html, admin.html, etc)
+# Estos se sirven directamente sin redirección.
+
+# Regla 2: archivos en /html/ se sirven directamente
+[[redirects]]
+  from = "/html/*"
+  to = "/html/:splat"
+  status = 200
+
+# Regla 3: /algo.html → /html/algo.html
+[[redirects]]
+  from = "/*.html"
+  to = "/html/:splat.html"
+  status = 200
+  force = false
+
+# Regla 4: /algo (sin extensión) → /html/algo.html
 [[redirects]]
   from = "/:page"
   to = "/html/:page.html"
   status = 200
   force = false
-  conditions = { Negate = true, Query = { file = ["*.html", "*.json", "*.js", "*.css", "*.png", "*.jpg", "*.gif", "*.svg"] } }
 
-[[redirects]]
-  from = "/*.html"
-  to = "/html/:splat.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
+# Headers de seguridad
 [[headers]]
   for = "/*"
   [headers.values]
@@ -26,15 +36,15 @@
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=()"
 
+# Headers para JSON
 [[headers]]
   for = "/*.json"
   [headers.values]
     Content-Type = "application/json"
 
+# Headers para HTML
 [[headers]]
   for = "/*.html"
   [headers.values]
     Content-Type = "text/html; charset=utf-8"
-    Cache-Control = "max-age=3600"
