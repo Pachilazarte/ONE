@@ -1,0 +1,50 @@
+# Configuración de Netlify para Plataforma de Alumnos
+
+[build]
+  command = "echo 'No build needed'"
+  publish = "."
+
+# Redireccionamiento de rutas
+# /ejemplo → /html/ejemplo.html
+# /ejemplo.html → /html/ejemplo.html
+
+[[redirects]]
+  from = "/:page"
+  to = "/html/:page.html"
+  status = 200
+  force = false
+  conditions = { Negate = true, Query = { file = ["*.html", "*.json", "*.js", "*.css", "*.png", "*.jpg", "*.gif", "*.svg"] } }
+
+[[redirects]]
+  from = "/*.html"
+  to = "/html/:splat.html"
+  status = 200
+
+# Manejar URLs sin extensión pero que existen como .html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers de seguridad
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=()"
+
+# Headers para JSON
+[[headers]]
+  for = "/*.json"
+  [headers.values]
+    Content-Type = "application/json"
+
+# Headers para HTML
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    Cache-Control = "max-age=3600"

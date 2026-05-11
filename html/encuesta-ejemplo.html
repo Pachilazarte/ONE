@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Satisfacción - Alumnos ESCENCIAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            opacity: 0.8;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 1.05em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .radio-item label,
+        .checkbox-item label {
+            margin: 0;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .rating {
+            display: flex;
+            gap: 10px;
+            justify-content: space-around;
+        }
+
+        .star {
+            font-size: 2em;
+            cursor: pointer;
+            transition: transform 0.2s;
+            user-select: none;
+        }
+
+        .star:hover,
+        .star.selected {
+            transform: scale(1.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .reset-btn {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .reset-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            border: 1px solid #c3e6cb;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .help-text {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .rating {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">← Volver</a>
+
+        <div class="header">
+            <h1>📋 Encuesta de Satisfacción</h1>
+            <p>Tu opinión es muy importante para nosotros</p>
+        </div>
+
+        <div class="success-message" id="successMsg">
+            ✅ ¡Gracias! Tu respuesta ha sido registrada exitosamente.
+        </div>
+
+        <form id="surveyForm">
+            <!-- Información Personal -->
+            <div class="form-group">
+                <label for="nombre">Nombre Completo <span class="required">*</span></label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <!-- Calificación por Estrellas -->
+            <div class="form-group">
+                <label>¿Cómo calificarías tu experiencia? <span class="required">*</span></label>
+                <div class="rating" id="rating">
+                    <span class="star" data-value="1">⭐</span>
+                    <span class="star" data-value="2">⭐</span>
+                    <span class="star" data-value="3">⭐</span>
+                    <span class="star" data-value="4">⭐</span>
+                    <span class="star" data-value="5">⭐</span>
+                </div>
+                <input type="hidden" id="rating-value" name="calificacion" required>
+            </div>
+
+            <!-- Opciones Múltiples -->
+            <div class="form-group">
+                <label>¿Qué aspectos más te gustaron? <span class="required">*</span></label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="aspecto1" name="aspectos" value="contenido">
+                        <label for="aspecto1">Contenido de calidad</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="aspecto2" name="aspectos" value="profesores">
+                        <label for="aspecto2">Profesores dedicados</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="aspecto3" name="aspectos" value="infraestructura">
+                        <label for="aspecto3">Buena infraestructura</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="aspecto4" name="aspectos" value="horarios">
+                        <label for="aspecto4">Horarios convenientes</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radio Buttons -->
+            <div class="form-group">
+                <label>¿Recomendarías nuestro servicio? <span class="required">*</span></label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="recomendacion1" name="recomendacion" value="definitivamente" required>
+                        <label for="recomendacion1">Definitivamente sí</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="recomendacion2" name="recomendacion" value="probablemente">
+                        <label for="recomendacion2">Probablemente sí</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="recomendacion3" name="recomendacion" value="neutral">
+                        <label for="recomendacion3">No estoy seguro</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="recomendacion4" name="recomendacion" value="no">
+                        <label for="recomendacion4">No lo haría</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select/Dropdown -->
+            <div class="form-group">
+                <label for="frecuencia">¿Con qué frecuencia usaste el servicio? <span class="required">*</span></label>
+                <select id="frecuencia" name="frecuencia" required>
+                    <option value="">-- Selecciona una opción --</option>
+                    <option value="diario">Diariamente</option>
+                    <option value="semanal">Varias veces a la semana</option>
+                    <option value="mensual">Una vez al mes</option>
+                    <option value="esporadico">Esporádicamente</option>
+                </select>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                <label for="comentarios">Comentarios Adicionales</label>
+                <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos qué podríamos mejorar..."></textarea>
+                <div class="help-text">Máximo 500 caracteres</div>
+            </div>
+
+            <!-- Botones -->
+            <div class="button-group">
+                <button type="submit" class="submit-btn">✉️ Enviar Encuesta</button>
+                <button type="reset" class="reset-btn">🔄 Limpiar Formulario</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Sistema de calificación por estrellas
+        const stars = document.querySelectorAll('.star');
+        const ratingValue = document.getElementById('rating-value');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.getAttribute('data-value');
+                ratingValue.value = value;
+                
+                // Actualizar visual
+                stars.forEach(s => s.classList.remove('selected'));
+                for (let i = 0; i < value; i++) {
+                    stars[i].classList.add('selected');
+                }
+            });
+
+            star.addEventListener('mouseover', () => {
+                const value = star.getAttribute('data-value');
+                stars.forEach((s, idx) => {
+                    if (idx < value) {
+                        s.style.opacity = '0.6';
+                    } else {
+                        s.style.opacity = '1';
+                    }
+                });
+            });
+        });
+
+        document.getElementById('rating').addEventListener('mouseleave', () => {
+            stars.forEach(s => s.style.opacity = '1');
+        });
+
+        // Manejo del formulario
+        document.getElementById('surveyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Validación básica
+            if (!document.getElementById('nombre').value.trim()) {
+                alert('Por favor ingresa tu nombre');
+                return;
+            }
+
+            if (!document.getElementById('email').value.trim()) {
+                alert('Por favor ingresa tu email');
+                return;
+            }
+
+            if (!ratingValue.value) {
+                alert('Por favor selecciona una calificación');
+                return;
+            }
+
+            // Aquí irían los datos a enviar a un servidor
+            // fetch('/api/survey', {method: 'POST', body: new FormData(this)})
+
+            // Mostrar mensaje de éxito
+            document.getElementById('surveyForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+
+            // Recargar en 3 segundos
+            setTimeout(() => {
+                document.getElementById('surveyForm').style.display = 'block';
+                document.getElementById('successMsg').style.display = 'none';
+                document.getElementById('surveyForm').reset();
+                ratingValue.value = '';
+                stars.forEach(s => s.classList.remove('selected'));
+            }, 3000);
+        });
+
+        // Limitar caracteres en textarea
+        document.getElementById('comentarios').addEventListener('input', (e) => {
+            if (e.target.value.length > 500) {
+                e.target.value = e.target.value.substring(0, 500);
+            }
+        });
+    </script>
+</body>
+</html>

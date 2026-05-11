@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Página - Alumnos ESCENCIAL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .content {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .content h2 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            font-size: 1.6em;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .content ul {
+            margin: 15px 0 15px 25px;
+            color: #555;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin: 15px 10px 15px 0;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .button-secondary {
+            background: #f0f0f0;
+            color: #667eea;
+        }
+
+        .button-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+
+            .content h2 {
+                font-size: 1.2em;
+            }
+
+            .button {
+                display: block;
+                width: 100%;
+                text-align: center;
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-button">← Volver al Inicio</a>
+
+        <div class="header">
+            <h1>📚 Título de la Página</h1>
+            <p>Descripción breve del contenido</p>
+        </div>
+
+        <div class="content">
+            <h2>Bienvenido</h2>
+            <p>
+                Esta es una página de ejemplo que puedes utilizar como base para crear tus propios 
+                contenidos. Está completamente sincronizada con el sistema de Drive → GitHub → Netlify.
+            </p>
+
+            <div class="info-box">
+                <strong>💡 Consejo:</strong> Edita el HTML de este archivo para personalizar el contenido 
+                según tus necesidades.
+            </div>
+
+            <h2>Características</h2>
+            <ul>
+                <li>✅ Diseño responsivo (funciona en móvil y desktop)</li>
+                <li>✅ Sincronización automática desde Google Drive</li>
+                <li>✅ Hospedado en Netlify con CDN global</li>
+                <li>✅ URLs limpias y amigables con SEO</li>
+                <li>✅ Sistema de navegación integrado</li>
+            </ul>
+
+            <h2>¿Cómo usar este archivo?</h2>
+            <p>
+                Sube este archivo a la carpeta de Google Drive, ejecuta la sincronización en Google Apps Script,
+                y automáticamente aparecerá en tu sitio web. Puedes hacer cambios en cualquier momento y 
+                sincronizar nuevamente para actualizar el contenido.
+            </p>
+
+            <h2>Ejemplos de Contenido</h2>
+            <p>
+                Puedes incluir cualquier tipo de contenido HTML:
+            </p>
+            <ul>
+                <li>Formularios interactivos</li>
+                <li>Encuestas y cuestionarios</li>
+                <li>Catálogos de productos</li>
+                <li>Calendarios y agendas</li>
+                <li>Dashboards y analytics</li>
+                <li>Videos embebidos</li>
+                <li>Mapas interactivos</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>📌 Importante:</strong> Los archivos HTML deben estar en formato UTF-8 
+                para que caracteres especiales (acentos, ñ) se muestren correctamente.
+            </div>
+
+            <h2>Próximos Pasos</h2>
+            <p>
+                Personaliza esta plantilla con tu propio contenido. Aquí hay algunas ideas:
+            </p>
+            <ul>
+                <li>Cambiar el título y descripción</li>
+                <li>Modificar los colores según tu marca</li>
+                <li>Agregar tu propio contenido</li>
+                <li>Incluir formularios o interactividad</li>
+                <li>Agregar imágenes y multimedia</li>
+            </ul>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="button" onclick="alert('¡Hola desde JavaScript!')">
+                    🎯 Botón Interactivo
+                </button>
+                <a href="/" class="button button-secondary">
+                    ← Ir al Inicio
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>
+                Página sincronizada automáticamente | 
+                <a href="/" style="color: #667eea; text-decoration: none;">Ver todas las páginas</a> | 
+                <a href="/admin.html" style="color: #667eea; text-decoration: none;">Panel de Admin</a>
+            </p>
+            <p style="margin-top: 10px;">
+                © ESCENCIAL CONSULTORA | Sistema de Alumnos
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Puedes agregar JavaScript personalizado aquí
+        console.log('Página cargada correctamente');
+        
+        // Ejemplo: rastrear visitas
+        // fetch('/log', {method: 'POST', body: JSON.stringify({page: 'ejemplo'})});
+    </script>
+</body>
+</html>
