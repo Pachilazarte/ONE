@@ -1,43 +1,64 @@
-# Archivos del Sistema
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-*~
-.vscode
-.idea
+# Backend - Archivos de Google Apps Script
+*.gs
+BACKEND*
+UPDATE_INDEX*
+NUEVO_CODIGO*
+APPS_SCRIPT*
 
-# Node/npm
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Compilados
-dist/
-build/
-
-# Logs
-*.log
-
-# Secretos
+# Secretos y Tokens
 .env
 .env.local
 .env.*.local
+*.token
+*token*
+*secret*
+*credentials*
 
-# IDEs
-.vscode/
-.idea/
-*.sublime-workspace
+# Guías
+GUIA_*.md
+ESTRUCTURA_*.md
 
-# OS
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Build
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
 
 # Temporales
 *.tmp
 *.bak
+*.backup
+*.cache
