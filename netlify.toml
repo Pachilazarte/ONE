@@ -1,12 +1,6 @@
-# Configuración de Netlify para Plataforma de Alumnos
-
 [build]
   command = "echo 'No build needed'"
   publish = "."
-
-# Redireccionamiento de rutas
-# /ejemplo → /html/ejemplo.html
-# /ejemplo.html → /html/ejemplo.html
 
 [[redirects]]
   from = "/:page"
@@ -20,13 +14,11 @@
   to = "/html/:splat.html"
   status = 200
 
-# Manejar URLs sin extensión pero que existen como .html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Headers de seguridad
 [[headers]]
   for = "/*"
   [headers.values]
@@ -36,13 +28,11 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=()"
 
-# Headers para JSON
 [[headers]]
   for = "/*.json"
   [headers.values]
     Content-Type = "application/json"
 
-# Headers para HTML
 [[headers]]
   for = "/*.html"
   [headers.values]

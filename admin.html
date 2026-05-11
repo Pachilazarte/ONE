@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Plataforma de Alumnos</title>
+    <title>Admin - ONE Plataforma</title>
     <style>
         * {
             margin: 0;
@@ -70,35 +70,23 @@
             padding-bottom: 15px;
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
+        .info-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
             color: #333;
-            font-weight: 600;
         }
 
-        input[type="file"],
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1em;
-            transition: border-color 0.3s;
+        .info-box strong {
+            color: #667eea;
         }
 
-        input[type="file"]:focus,
-        input[type="text"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            background: #f8f9ff;
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         button {
@@ -121,16 +109,6 @@
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
 
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
         .button-secondary {
             background: #f0f0f0;
             color: #667eea;
@@ -142,68 +120,28 @@
             box-shadow: none;
         }
 
-        .status {
-            margin-top: 15px;
+        .status-box {
             padding: 15px;
             border-radius: 8px;
-            display: none;
-            align-items: center;
-            gap: 10px;
+            margin-top: 15px;
         }
 
-        .status.success {
+        .status-box.success {
             background: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
-            display: flex;
         }
 
-        .status.error {
+        .status-box.error {
             background: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
-            display: flex;
         }
 
-        .status.loading {
+        .status-box.info {
             background: #d1ecf1;
             color: #0c5460;
             border: 1px solid #bee5eb;
-            display: flex;
-        }
-
-        .spinner {
-            border: 2px solid rgba(0,0,0,0.1);
-            border-top: 2px solid #667eea;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            flex-shrink: 0;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .info-box {
-            background: #f0f4ff;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .info-box strong {
-            color: #667eea;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
         }
 
         .files-list {
@@ -260,17 +198,14 @@
             display: block;
         }
 
-        .warning {
-            background: #fff3cd;
-            color: #856404;
-            padding: 12px;
-            border-radius: 5px;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 20px;
-        }
-
         .section {
             margin-bottom: 40px;
+        }
+
+        h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
 
         @media (max-width: 768px) {
@@ -280,10 +215,6 @@
 
             .grid {
                 grid-template-columns: 1fr;
-            }
-
-            .tabs {
-                flex-wrap: wrap;
             }
 
             button {
@@ -311,7 +242,7 @@
             <div class="tabs">
                 <button class="tab-button active" onclick="switchTab('sync')">🔄 Sincronización</button>
                 <button class="tab-button" onclick="switchTab('files')">📁 Archivos</button>
-                <button class="tab-button" onclick="switchTab('logs')">📊 Estado</button>
+                <button class="tab-button" onclick="switchTab('info')">📊 Información</button>
             </div>
 
             <!-- TAB: SINCRONIZACIÓN -->
@@ -319,23 +250,20 @@
                 <h2>🔄 Sincronización Drive → GitHub → Netlify</h2>
                 
                 <div class="info-box">
-                    <strong>ℹ️ Nota:</strong> La sincronización se realiza automáticamente desde Google Apps Script. 
-                    Este panel es para monitoreo. Los cambios en Drive se sincronizan ejecutando 
-                    <code>sync()</code> en Apps Script.
+                    <strong>ℹ️ Nota:</strong> La sincronización se realiza desde Google Sheets. 
+                    Este panel muestra el estado actual de los archivos sincronizados.
                 </div>
 
-                <div class="form-group">
-                    <label>Estado de la sincronización</label>
+                <div style="margin-top: 20px;">
+                    <h3>Estado Actual</h3>
                     <div id="sync-status" style="padding: 15px; background: #f8f9fa; border-radius: 5px; color: #666;">
                         Cargando estado...
                     </div>
                 </div>
 
-                <button onclick="checkSyncStatus()" class="button-secondary">
+                <button onclick="checkSyncStatus()" style="margin-top: 20px;">
                     🔍 Verificar Estado
                 </button>
-
-                <div id="sync-message" class="status"></div>
             </div>
 
             <!-- TAB: ARCHIVOS -->
@@ -344,8 +272,7 @@
                 
                 <div class="info-box">
                     <strong>ℹ️ Información:</strong> Los archivos listados aquí están sincronizados 
-                    desde Google Drive. Para agregar nuevos, sube a Drive y ejecuta <code>sync()</code> 
-                    en Google Apps Script.
+                    desde Google Drive. Para agregar nuevos, sube a Drive y ejecuta sincronización.
                 </div>
 
                 <div id="files-container" style="margin-top: 20px;">
@@ -353,77 +280,78 @@
                 </div>
             </div>
 
-            <!-- TAB: LOGS -->
-            <div id="logs" class="tab-content">
-                <h2>📊 Estado del Sistema</h2>
+            <!-- TAB: INFORMACIÓN -->
+            <div id="info" class="tab-content">
+                <h2>📊 Información del Sistema</h2>
                 
-                <div class="form-group">
-                    <label>Información del Sistema</label>
-                    <div id="system-info" style="padding: 15px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em; color: #666; font-family: monospace;">
-                        Cargando...
+                <div style="margin-top: 20px;">
+                    <h3>⚙️ Configuración Actual</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; font-size: 0.9em; color: #666; font-family: monospace;">
+                        <p><strong>Dominio:</strong> https://one.escencialconsultora.com</p>
+                        <p><strong>Usuario GitHub:</strong> Pachilazarte</p>
+                        <p><strong>Repositorio:</strong> ONE</p>
+                        <p><strong>Rama:</strong> main</p>
+                        <p><strong>Hosting:</strong> Netlify</p>
+                        <p style="margin-top: 15px;"><strong>Status:</strong> ✅ Sistema conectado</p>
                     </div>
                 </div>
 
-                <button onclick="refreshSystemInfo()">
-                    🔄 Actualizar Información
-                </button>
-
                 <div style="margin-top: 30px;">
-                    <h3 style="color: #667eea; margin-bottom: 15px;">📝 Instrucciones de Sincronización</h3>
+                    <h3>📝 Instrucciones de Sincronización</h3>
                     <div class="info-box">
-                        <p><strong>Paso 1:</strong> Sube tus archivos HTML a Google Drive (carpeta sincronizada)</p>
-                        <p style="margin-top: 10px;"><strong>Paso 2:</strong> Ve a Google Sheets → Extensions → Apps Script</p>
-                        <p style="margin-top: 10px;"><strong>Paso 3:</strong> Ejecuta la función <code>sync()</code></p>
-                        <p style="margin-top: 10px;"><strong>Paso 4:</strong> Los cambios se pushean a GitHub automáticamente</p>
+                        <p><strong>Paso 1:</strong> Sube archivos HTML a tu carpeta Drive</p>
+                        <p style="margin-top: 10px;"><strong>Paso 2:</strong> Ve a Google Sheets → Menú "Sincronización"</p>
+                        <p style="margin-top: 10px;"><strong>Paso 3:</strong> Haz clic en "Sincronizar Drive → GitHub"</p>
+                        <p style="margin-top: 10px;"><strong>Paso 4:</strong> Espera a que se complete</p>
                         <p style="margin-top: 10px;"><strong>Paso 5:</strong> Netlify despliega automáticamente</p>
-                        <p style="margin-top: 10px;"><strong>Paso 6:</strong> ¡Tus archivos están disponibles en el dominio!</p>
+                        <p style="margin-top: 10px;"><strong>Paso 6:</strong> ¡Tus archivos están disponibles!</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PANEL ADICIONAL -->
+        <!-- PANEL DE ENLACES -->
         <div class="panel">
             <h2>🔗 Enlaces Útiles</h2>
             
             <div class="grid">
                 <div>
-                    <h3 style="color: #667eea; margin-bottom: 10px;">📊 Google Sheets</h3>
+                    <h3>📊 Google Sheets</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Accede a la hoja de cálculo para ver el índice de sincronización.
+                        Accede a la hoja de cálculo para sincronizar.
                     </p>
-                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1gD_OO8Ot9zz6i5hgGUJNU9zUNr51V-NYeBQsjLi5b2g', '_blank')" class="button-secondary">
+                    <button onclick="window.open('https://docs.google.com/spreadsheets/d/1S55Lml-GHGmNyzrWfG314bxll-eSqulldioAjsAMQ/edit', '_blank')">
                         Abrir Sheets
                     </button>
                 </div>
 
                 <div>
-                    <h3 style="color: #667eea; margin-bottom: 10px;">🐙 GitHub</h3>
+                    <h3>🐙 GitHub</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Accede al repositorio para ver los cambios en tiempo real.
+                        Accede al repositorio para ver los cambios.
                     </p>
-                    <button onclick="window.open('https://github.com/NelsonVsqz/alumnos', '_blank')" class="button-secondary">
+                    <button onclick="window.open('https://github.com/Pachilazarte/ONE', '_blank')">
                         Ver Repositorio
                     </button>
                 </div>
 
                 <div>
-                    <h3 style="color: #667eea; margin-bottom: 10px;">🚀 Netlify</h3>
+                    <h3>📁 Google Drive</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Monitorea los despliegues y el estado del sitio.
+                        Sube tus archivos HTML aquí.
                     </p>
-                    <button onclick="alert('Ve a https://netlify.com para más información')" class="button-secondary">
-                        Ir a Netlify
+                    <button onclick="window.open('https://drive.google.com/drive/folders/1yK7WWdci8hoaEtEEM0U7-neRlElIfV6j', '_blank')">
+                        Abrir Drive
                     </button>
                 </div>
 
                 <div>
-                    <h3 style="color: #667eea; margin-bottom: 10px;">📁 Google Drive</h3>
+                    <h3>🚀 Netlify</h3>
                     <p style="margin-bottom: 10px; color: #666;">
-                        Sube tus archivos HTML aquí para sincronizar.
+                        Monitorea los despliegues del sitio.
                     </p>
-                    <button onclick="window.open('https://drive.google.com/drive/folders/1zotHNR7eKBedpvIya4j8716AJIJU2pMC', '_blank')" class="button-secondary">
-                        Abrir Drive
+                    <button onclick="window.open('https://app.netlify.com', '_blank')">
+                        Ir a Netlify
                     </button>
                 </div>
             </div>
@@ -432,7 +360,6 @@
 
     <script>
         function switchTab(tabName) {
-            // Ocultar todos los tabs
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
@@ -440,15 +367,11 @@
                 btn.classList.remove('active');
             });
 
-            // Mostrar el tab seleccionado
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
 
-            // Cargar contenido específico
             if (tabName === 'files') {
                 loadFiles();
-            } else if (tabName === 'logs') {
-                refreshSystemInfo();
             }
         }
 
@@ -459,7 +382,7 @@
                 const container = document.getElementById('files-container');
 
                 if (data.files.length === 0) {
-                    container.innerHTML = '<p style="color: #999;">No hay archivos disponibles aún.</p>';
+                    container.innerHTML = '<p style="color: #999;">No hay archivos disponibles aún. Sube algunos a Drive y sincroniza.</p>';
                     return;
                 }
 
@@ -474,7 +397,7 @@
                                 <strong>${cleanName}</strong>
                                 <div class="date">${date}</div>
                             </div>
-                            <button onclick="window.open('/${cleanName}', '_blank')" class="button-secondary">
+                            <button onclick="window.open('/${cleanName}', '_blank')" style="margin: 0;">
                                 Ver →
                             </button>
                         </div>
@@ -496,64 +419,39 @@
                 const statusDiv = document.getElementById('sync-status');
                 const lastSync = new Date(data.lastSync);
                 const now = new Date();
-                const diff = Math.floor((now - lastSync) / 1000 / 60); // minutos
+                const diffMinutes = Math.floor((now - lastSync) / 1000 / 60);
 
-                let status = '✅ Sistema funcionando correctamente';
-                let style = 'color: green;';
-
-                if (diff > 60) {
-                    status = '⚠️ No hay sincronizaciones recientes (más de 1 hora)';
-                    style = 'color: orange;';
+                let html = '';
+                
+                if (diffMinutes < 5) {
+                    html = `<div class="status-box success">
+                        ✅ Sistema funcionando correctamente
+                        <br>Última sincronización: ${lastSync.toLocaleString('es-ES')}
+                        <br>Total de archivos: ${data.files.length}
+                    </div>`;
+                } else if (diffMinutes < 60) {
+                    html = `<div class="status-box info">
+                        ℹ️ Última sincronización hace ${diffMinutes} minutos
+                        <br>Hora: ${lastSync.toLocaleString('es-ES')}
+                        <br>Total de archivos: ${data.files.length}
+                    </div>`;
+                } else {
+                    html = `<div class="status-box">
+                        Última sincronización: ${lastSync.toLocaleString('es-ES')}
+                        <br>Total de archivos: ${data.files.length}
+                    </div>`;
                 }
 
-                statusDiv.innerHTML = `
-                    <div style="${style}">
-                        <strong>${status}</strong><br>
-                        Última sincronización: ${lastSync.toLocaleString('es-ES')}<br>
-                        Total de archivos: ${data.files.length}
-                    </div>
-                `;
-
-                showStatus('Verificación completada', 'success');
+                statusDiv.innerHTML = html;
             } catch (error) {
-                showStatus('Error al verificar estado: ' + error.message, 'error');
+                document.getElementById('sync-status').innerHTML = 
+                    `<div class="status-box error">❌ Error al verificar estado: ${error.message}</div>`;
             }
         }
 
-        function refreshSystemInfo() {
-            const info = `
-Navegador: ${navigator.userAgent.substring(0, 50)}...
-Zona horaria: ${Intl.DateTimeFormat().resolvedOptions().timeZone}
-Hora actual: ${new Date().toLocaleString('es-ES')}
-
-Configuración:
-- Base URL: https://alumnos.escencialconsultora.com
-- Repositorio: NelsonVsqz/alumnos
-- Rama: main
-- Hosting: Netlify
-
-Status: ✅ Sistema conectado
-            `;
-
-            document.getElementById('system-info').textContent = info;
-        }
-
-        function showStatus(message, type) {
-            const statusDiv = document.getElementById('sync-message');
-            statusDiv.textContent = message;
-            statusDiv.className = `status ${type}`;
-            
-            if (type !== 'loading') {
-                setTimeout(() => {
-                    statusDiv.style.display = 'none';
-                }, 5000);
-            }
-        }
-
-        // Cargar datos iniciales
+        // Cargar estado al abrir
         document.addEventListener('DOMContentLoaded', () => {
             checkSyncStatus();
-            refreshSystemInfo();
         });
     </script>
 </body>

@@ -3,82 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alumnos - ESCENCIAL CONSULTORA</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ONE - Plataforma de Proyectos</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .container { max-width: 1000px; margin: 0 auto; }
+        header { text-align: center; color: white; margin-bottom: 30px; padding-top: 30px; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        header p { font-size: 1.1em; opacity: 0.9; }
+        .toolbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
-
-        header {
-            text-align: center;
-            color: white;
-            margin-bottom: 50px;
-            padding-top: 30px;
+        .toolbar-info { color: white; }
+        .toolbar-info p { margin: 3px 0; font-size: 0.95em; }
+        .btn-sync {
+            background: white;
+            color: #667eea;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
+        .btn-sync:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0,0,0,0.3); }
+        .btn-sync:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
         .files-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
             margin-bottom: 50px;
         }
-
         .file-card {
             background: white;
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
             text-decoration: none;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
-
-        .file-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-        }
-
-        .file-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.3em;
-        }
-
-        .file-card p {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
+        .file-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .file-card h3 { color: #667eea; margin-bottom: 10px; font-size: 1.3em; }
+        .file-card p { color: #666; font-size: 0.9em; margin-bottom: 15px; }
         .file-card .badge {
             display: inline-block;
             background: #667eea;
@@ -88,45 +75,35 @@
             font-size: 0.8em;
             margin-top: auto;
         }
-
-        .loading {
-            text-align: center;
-            color: white;
-            font-size: 1.1em;
-            padding: 40px;
-        }
-
-        .error {
-            background: #ff6b6b;
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .empty {
+        .loading { text-align: center; color: white; font-size: 1.1em; padding: 40px; }
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background: white;
+            color: #333;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+            min-width: 250px;
+            border-left: 4px solid #667eea;
+        }
+        .toast.show { display: block; animation: slideIn 0.3s ease; }
+        .toast.success { border-left-color: #28a745; }
+        .toast.error { border-left-color: #dc3545; }
+        .toast.info { border-left-color: #17a2b8; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .no-data {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed white;
             padding: 40px;
             border-radius: 10px;
             text-align: center;
-            color: #666;
-        }
-
-        .stats {
-            background: rgba(255,255,255,0.1);
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            text-align: center;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
         }
-
-        .stats p {
-            font-size: 1em;
-        }
-
+        .no-data h2 { margin-bottom: 10px; }
         .admin-link {
             position: fixed;
             bottom: 20px;
@@ -140,62 +117,44 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             transition: all 0.3s ease;
         }
-
-        .admin-link:hover {
-            transform: scale(1.1);
-            background: #667eea;
-            color: white;
+        .admin-link:hover { transform: scale(1.1); background: #667eea; color: white; }
+        footer { text-align: center; color: rgba(255,255,255,0.7); padding: 20px; margin-top: 40px; font-size: 0.9em; }
+        .spinner {
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
         }
-
-        .no-data {
-            background: rgba(255,255,255,0.1);
-            border: 2px dashed white;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            color: white;
-        }
-
-        .no-data h2 {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
-            color: rgba(255,255,255,0.7);
-            padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 40px;
-            font-size: 0.9em;
-        }
-
+        .btn-sync .spinner { border-color: rgba(102, 126, 234, 0.3); border-top-color: #667eea; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            .files-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-link {
-                width: calc(100% - 40px);
-                right: 20px;
-                text-align: center;
-            }
+            header h1 { font-size: 1.8em; }
+            .files-grid { grid-template-columns: 1fr; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .btn-sync { width: 100%; justify-content: center; }
         }
     </style>
 </head>
 <body>
+    <div id="toast" class="toast"></div>
+
     <div class="container">
         <header>
-            <h1>📚 Plataforma de Alumnos</h1>
+            <h1>📚 ONE - Plataforma</h1>
             <p>ESCENCIAL CONSULTORA</p>
         </header>
 
-        <div class="stats">
-            <p>Total de recursos disponibles: <strong id="total-files">0</strong></p>
-            <p id="last-sync" style="font-size: 0.9em; margin-top: 5px;"></p>
+        <div class="toolbar">
+            <div class="toolbar-info">
+                <p>📊 Total de recursos: <strong id="total-files">0</strong></p>
+                <p id="last-sync" style="font-size: 0.85em; opacity: 0.9;"></p>
+            </div>
+            <button id="btn-sync" class="btn-sync" onclick="sincronizarAhora()">
+                🔄 Sincronizar Ahora
+            </button>
         </div>
 
         <div id="content" class="loading">
@@ -203,16 +162,18 @@
         </div>
 
         <footer>
-            <p>Sistema de sincronización automática Drive → GitHub → Netlify</p>
+            <p>Sistema automático Drive → GitHub → Netlify</p>
         </footer>
     </div>
 
     <a href="admin.html" class="admin-link">⚙️ Admin</a>
 
     <script>
+        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6HKcHaywg5K2UtSXcAPfh5HQgCrWqREiEJTebWQwD1QgNgXA52R25ZOOdCktrJ4TY5w/exec';
+
         async function loadFiles() {
             try {
-                const response = await fetch('/index.json');
+                const response = await fetch('/index.json?t=' + Date.now());
                 const data = await response.json();
                 
                 const contentDiv = document.getElementById('content');
@@ -223,21 +184,14 @@
                 
                 if (data.lastSync) {
                     const date = new Date(data.lastSync);
-                    const formatted = date.toLocaleDateString('es-ES', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    lastSync.innerHTML = `<em>Última actualización: ${formatted}</em>`;
+                    lastSync.innerHTML = `Última actualización: ${date.toLocaleString('es-ES')}`;
                 }
 
                 if (data.files.length === 0) {
                     contentDiv.innerHTML = `
                         <div class="no-data">
-                            <h2>📭 Sin recursos</h2>
-                            <p>Los archivos aparecerán aquí cuando se sincronicen desde Drive.</p>
+                            <h2>📭 Sin recursos disponibles</h2>
+                            <p>Sube archivos HTML a Drive y haz clic en "Sincronizar Ahora"</p>
                         </div>
                     `;
                     return;
@@ -261,6 +215,7 @@
                                 <h3>📄 ${title}</h3>
                                 <p>Archivo: ${file.name}</p>
                                 <p style="font-size: 0.85em; color: #999;">Modificado: ${dateStr}</p>
+                                ${file.size ? `<p style="font-size: 0.85em; color: #999;">Tamaño: ${file.size}</p>` : ''}
                             </div>
                             <span class="badge">Abrir →</span>
                         </a>
@@ -273,20 +228,59 @@
             } catch (error) {
                 console.error('Error cargando archivos:', error);
                 document.getElementById('content').innerHTML = `
-                    <div class="error">
-                        <strong>⚠️ Error al cargar los recursos</strong>
+                    <div class="no-data">
+                        <h2>⚠️ Error al cargar</h2>
                         <p>${error.message}</p>
-                        <p style="font-size: 0.9em; margin-top: 10px;">Intenta recargar la página.</p>
                     </div>
                 `;
             }
         }
 
-        // Cargar archivos cuando el DOM está listo
-        document.addEventListener('DOMContentLoaded', loadFiles);
+        async function sincronizarAhora() {
+            const btn = document.getElementById('btn-sync');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner"></span> Sincronizando...';
 
-        // Auto-refresh cada 5 minutos
-        setInterval(loadFiles, 5 * 60 * 1000);
+            showToast('⏳ Iniciando sincronización...', 'info');
+
+            try {
+                const response = await fetch(`${APPS_SCRIPT_URL}?action=sync`);
+                const data = await response.json();
+
+                if (data.exito) {
+                    showToast(`✅ ${data.sincronizados}/${data.total} archivos sincronizados`, 'success');
+                    
+                    setTimeout(() => {
+                        showToast('🔄 Recargando lista...', 'info');
+                        loadFiles();
+                    }, 5000);
+                } else {
+                    showToast(`❌ Error: ${data.mensaje}`, 'error');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showToast(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast show ${type}`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadFiles);
+        setInterval(loadFiles, 60 * 1000);
     </script>
 </body>
 </html>
