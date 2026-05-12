@@ -1,7 +1,16 @@
 {
-  "lastSync": "2026-05-11T23:49:46.293Z",
+  "lastSync": "2026-05-12T00:19:47.876Z",
   "baseUrl": "https://one.escencialconsultora.com",
   "files": [
+    {
+      "name": "clase4-bonus.html",
+      "path": "/html/clase4-bonus.html",
+      "url": "https://one.escencialconsultora.com/clase4-bonus",
+      "driveUrl": "https://drive.google.com/file/d/19L-sZYIL5snICLz2XhAofQoAJwLvPvr7/view",
+      "modified": "2026-05-11T23:51:46.000Z",
+      "size": "71 KB",
+      "md5": "bd68136a433fc8fdae0f1f9a89bddf73"
+    },
     {
       "name": "ice-vocacional.html",
       "path": "/html/ice-vocacional.html",
@@ -12,5 +21,5 @@
       "md5": "4326893bc897c4e1c5bfbc7a1721df5c"
     }
   ],
-  "total": 1
+  "total": 2
 }
