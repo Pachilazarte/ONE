@@ -1,7 +1,16 @@
 {
-  "lastSync": "2026-05-13T00:49:47.434Z",
+  "lastSync": "2026-05-13T01:13:10.014Z",
   "baseUrl": "https://one.escencialconsultora.com",
   "files": [
+    {
+      "name": "plataforma_clase4.html",
+      "path": "/html/plataforma_clase4.html",
+      "url": "https://one.escencialconsultora.com/plataforma_clase4",
+      "driveUrl": "https://drive.google.com/file/d/1jlNb3F34JSrANOMbusVRfptK3arL9POW/view",
+      "modified": "2026-05-13T01:10:41.422Z",
+      "size": "26 KB",
+      "md5": "438cb4cc69602be4952ac39ffc7f366b"
+    },
     {
       "name": "clase4-bonus.html",
       "path": "/html/clase4-bonus.html",
@@ -21,5 +30,5 @@
       "md5": "4326893bc897c4e1c5bfbc7a1721df5c"
     }
   ],
-  "total": 2
+  "total": 3
 }
